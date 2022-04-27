@@ -1,2 +1,2 @@
-gevent
-flask
+gevent==21.12.0
+Flask==2.1.1

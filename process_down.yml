@@ -1,0 +1,24 @@
+---
+- name: Automatic Remediation of a webserver
+  hosts: localhost
+  sources:
+    - name: check web server
+      url_check:
+        urls:
+          - http://44.201.5.56:5000
+        delay: 1
+    - name: file facts
+      file:
+        files:
+        - fact.yml
+  rules:
+    - name: If webserver is down remediate the problem
+      condition:
+        all:
+          - facts.process_pid << fact.pid is defined
+          - events.url_down << event.url_check.status == "down"
+      action:
+        run_playbook:
+          name: start_app.yml
+          copy_files: true
+          post_events: true

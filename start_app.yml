@@ -18,6 +18,8 @@
     - set_fact:
         cacheable: true
         pid: "{{pid}}"
+    - pause:
+        seconds: 10
 
 
 

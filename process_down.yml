@@ -1,12 +1,12 @@
 ---
 - name: Automatic Remediation of a webserver
-  hosts: localhost
+  hosts: webserver
   sources:
     - name: check web server
       url_check:
         urls:
-          - http://44.201.5.56:5000
-        delay: 1
+          - http://44.201.5.56:8000/docs
+        delay: 10
     - name: file facts
       file:
         files:

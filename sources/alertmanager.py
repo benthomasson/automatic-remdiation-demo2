@@ -26,13 +26,14 @@ def main(queue, args):
                 meta=dict(endpoint=endpoint, headers=dict(request.headers)),
             )
         )
-        for alert in payload.get("alerts"):
-            queue.put(
-                dict(
-                    alert=alert,
-                    meta=dict(endpoint=endpoint, headers=dict(request.headers)),
+        for item in payload:
+            for alert in item.get("alerts"):
+                queue.put(
+                    dict(
+                        alert=alert,
+                        meta=dict(endpoint=endpoint, headers=dict(request.headers)),
+                    )
                 )
-            )
         return "Received", 202
 
     http_server = WSGIServer(

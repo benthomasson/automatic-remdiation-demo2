@@ -7,10 +7,14 @@
         host: 0.0.0.0
         port: 8000
   rules:
-    - name: debug
-      condition: event.alert.labels.job == "fastapi"
+    - name: restart web server
+      condition: event.alert.labels.job == "fastapi" and event.alert.status == "firing"
       action:
         run_playbook:
           name: start_app.yml
           copy_files: true
           post_events: true
+    - name: debug
+      condition: event.alert.labels.job == "fastapi"
+      action:
+        debug:

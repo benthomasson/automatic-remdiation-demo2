@@ -17,6 +17,10 @@ def main(queue, args):
 
     app = Flask(__name__)
 
+    @app.route("/", methods=["GET"])
+    def status():
+        return "up", 200
+
     @app.route("/<path:endpoint>", methods=["POST", "PUT", "DELETE", "PATCH"])
     def webhook(endpoint):
         queue.put(

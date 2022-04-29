@@ -6,6 +6,8 @@
       alertmanager:
         host: 0.0.0.0
         port: 8000
+      filters:
+        - alert_host_selector:
   rules:
     - name: restart web server
       condition: event.alert.labels.job == "fastapi" and event.alert.status == "firing"

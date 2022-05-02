@@ -52,7 +52,9 @@
                 },
                 "condition": {
                     "anyOf": [
-                        { "type": "string" }
+                        { "type": "string" },
+                        {"$ref": "#/$defs/all-condition"},
+                        {"$ref": "#/$defs/any-condition"}
                     ]
                 },
                 "action": {
@@ -60,6 +62,24 @@
                 }
             },
             "additionalProperties": false
+        },
+        "all-condition": {
+            "type": "object",
+            "properties": {
+                "all": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                }
+            }
+        },
+        "any-condition": {
+            "type": "object",
+            "properties": {
+                "any": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                }
+            }
         }
     }
 }

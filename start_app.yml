@@ -1,7 +1,7 @@
 ---
 - name: start app
   gather_facts: False
-  hosts: webserver
+  hosts: all
   tasks:
     - shell: /home/ec2-user/fastapi-realworld-example-app/run_app.sh & sleep 1
       async: 100000000

@@ -1,6 +1,6 @@
 ---
 - name: Automatic Remediation of a webserver
-  hosts: webserver
+  hosts: all
   sources:
     - name: listen for alerts
       alertmanager:

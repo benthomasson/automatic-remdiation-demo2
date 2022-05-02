@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "type": "array",
+    "items": {"$ref": "#/$defs/ruleset"},
+    "$defs": {
+        "ruleset": {
+            "type": "object",
+            "properties": {
+                "hosts": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sources": {
+                    "type": "array",
+                    "items": {"$ref": "#/$defs/source"}
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {"$ref": "#/$defs/rule"}
+                }
+            },
+            "required": [
+                "hosts",
+                "sources",
+                "rules"
+            ],
+            "additionalProperties": false
+        },
+        "source": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "filters": {
+                    "type": "array",
+                    "items": {"type": "object"}
+                }
+            },
+            "additionalProperties": {
+                "type": "object"
+            }
+        },
+        "rule": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "condition": {
+                    "anyOf": [
+                        { "type": "string" }
+                    ]
+                },
+                "action": {
+                    "type": "object"
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
